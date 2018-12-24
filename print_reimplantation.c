@@ -26,4 +26,5 @@ Elf32_Addr getValueReimplantation(Elf32_Sym *tableSymbole, Elf32_Word info);
 
 //recupere le nom de la section ou symbole ou faire la reimplantation
 char *getSectionOrSymboleName(Elf32_Shdr *table_section, Elf32_Sym *tableSymbole, Elf32_Word info);
+
 #endif
