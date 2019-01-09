@@ -274,12 +274,11 @@ void print_reloc(FILE* f, Elf32_Rel reloc, Elf32_Sym* symtab)
     print_reloc_type(ELF32_R_TYPE(info));
     
     //sym
-    //printf(" %08x ", sym);
+   
     if(sym!=0)
     {
 		//tampon = lecture_section (f,table_section [sym]);
-		printf("\t    %08x    ", symtab[sym].st_value);
-		printf("%d", valeur_big_endian32(symtab[sym].st_name));
+		printf("\t    %08x    ", valeur_big_endian32(symtab[sym].st_value));
 	}
 }
 
@@ -326,6 +325,7 @@ void get_ln (FILE *fd,Elf32_Ehdr entete,Elf32_Shdr table_section []) {
 
 	}
 }
+
 
 
 
