@@ -258,7 +258,7 @@ void print_reloc_type(Elf32_Word type)
     }
 }
 
-void print_reloc(FILE* f, Elf32_Rel reloc, Elf32_Sym* symtab, char *tampon)
+void print_reloc(FILE* f, Elf32_Rel reloc, Elf32_Sym* symtab)
 {
     Elf32_Word info = valeur_big_endian32(reloc.r_info);
     Elf32_Addr offset = valeur_big_endian32(reloc.r_offset);
@@ -279,7 +279,7 @@ void print_reloc(FILE* f, Elf32_Rel reloc, Elf32_Sym* symtab, char *tampon)
     {
 		//tampon = lecture_section (f,table_section [sym]);
 		printf("\t    %08x    ", symtab[sym].st_value);
-		printf("%s", tampon+symtab[sym].st_name);
+		printf("%d", valeur_big_endian32(symtab[sym].st_name));
 	}
 }
 
@@ -318,7 +318,7 @@ void get_ln (FILE *fd,Elf32_Ehdr entete,Elf32_Shdr table_section []) {
 				relocTable = read_reloc_index_table(fd, table_section, i); 	
 				for(int j=0; j<nbEntree; j++)
 				{
-					print_reloc(fd, relocTable[j], symtab, tampon_table);
+					print_reloc(fd, relocTable[j], symtab);
 					printf ("\n");
 				}
 			}
