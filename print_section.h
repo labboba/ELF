@@ -12,27 +12,53 @@
 #include <elf.h>
 #include <byteswap.h>
 #define  NB_OCTETS 16
-//lecture de la table des sections 
-//la fonction retourn ECHEC si la lecture s'est bien passée sinon ECHEC
+
+/*principe : lecture de la table des sections
+  parametre : l'entete du fichier ELF, le fichier fd, la table des symboles
+  valeur de retour : 0 si le deplacement a bien ete effectué sinon 1
+*/
 int lecture_entete_section (FILE *fd,Elf32_Ehdr entete,Elf32_Shdr sh_table[]);
 
-//lecture d'une section
-//elle prend en paramètre le pointeur de fichier fd,puis la table des sections
-//elle renvoie un tampon s'il n 'y a pas eu erreur autrement NULL
+/*lecture d'une section
+  parametre : elle prend en paramètre le pointeur de fichier fd,puis la table des sections
+  valeur de retour : elle renvoie un tampon s'il n 'y a pas eu erreur autrement NULL
+*/
 char *lecture_section (FILE *fd,Elf32_Shdr table);
 
-//Affichage de la table des sections
+/*Affichage du fanion
+  parametre : entete de section
+  valeur de retour : aucune
+*/
+void fanion (Elf32_Shdr entete_section);
+
+/*Affichage de la table des sections
+  parametre : fichier fd, entete, table des sections
+  valeur de retour : aucune
+*/
 void afficher_table_section (FILE *fd,Elf32_Ehdr entete,Elf32_Shdr table_section []);
 
-//afficher le type de l'entete correspondant
+
+/*afficher le type de l'entete correspondant
+  parametre : entete de section
+  valeur de retour : aucune
+*/
 void afficher_type(Elf32_Shdr entete_section);
-//afficher le fanion
-void fanion (Elf32_Shdr entete_section);
-//cette fonction recherche une section si elle existe renvoie SUCCES sinon ECHC
+
+/*cette fonction recherche une section
+  parametre : fichier fd, entete, table des sections, nom de la section
+  valeur de retour : 0 si la section existe sinon 1
+*/
 int recherche_section (FILE *fd,Elf32_Ehdr entete,Elf32_Shdr table_section[],char *shname);
-//aFfiche une section en fonction du
+
+/*affiche une section en fonction du nom
+  parametre : fichier fd, entete, table des sections, indice de la section
+  valeur de retour : aucune
+*/
 void affiche_une_section (FILE *fd,Elf32_Ehdr entete,Elf32_Shdr table_section [],int i_section);
-//cette fonction prend un tableau d'entier qui contient des codes ascii et le nombr d'élemnt du tableau
-//affiche le caractère correspondant au code ascii c[idince] si celui ci est imprimable sinon affiche .
+
+/*affiche le caractère correspondant au code ascii c[indice]
+  parametre : tableau d'entier, taille du tableau
+  valeur de retour : aucune
+*/
 void affiche_caracatere (int *c,int taille);
 #endif

@@ -13,17 +13,18 @@
 #include <byteswap.h>
 
 /*lecture de la table des symboles
---la fonction retourn ECHEC si la lecture s'est bien passée sinon ECHEC
-elle prend :le pointeur sur le fichier ,la table des symboles à initialisé ,le header puis la table des sections vu que les symboles sont contenues dans les sections
+  la fonction retourn SUCCES si la lecture s'est bien passée sinon ECHEC
+  Parametre :le pointeur sur le fichier ,la table des symboles à initialisé ,le header puis la table des sections vu que les symboles sont contenues dans les sections
 */
 int lecture_table_symbole (FILE *fd,Elf32_Shdr table_section[],Elf32_Sym *table_symbole,int32_t i_sym,Elf32_Ehdr entete);
 
 //affiche les symboles
-void affiche_symboles  (FILE *fd,Elf32_Ehdr entete,Elf32_Shdr section_table[],Elf32_Sym *table_symbole);//lecture d'un type de symbole
+void affiche_symboles  (FILE *fd,Elf32_Ehdr entete,Elf32_Shdr section_table[],Elf32_Sym *table_symbole);
 
+//affiche le type correspondant a la valeur st_type
 void type_symb (Elf32_Sym symbole);
-//affiche le link correspondant au champ st_shndx
 
+//affiche le link correspondant au champ st_shndx
 void affiche_link (Elf32_Sym symbole);
 //affiche la visibilité des symboles selon la valeur de st_other
 
