@@ -42,12 +42,6 @@ Elf32_Rel *read_reloc_table(FILE * f, Elf32_Off tableOffset, Elf32_Word tableSiz
 */
 Elf32_Rel *read_reloc_index_table(FILE * f, Elf32_Shdr * sectionHeaderTable, int tableIndex);
 
-/*principe : lis la table de reimplantation et le met dans la table de section
-  parametre : fichier, table des sections
-  valeur de retour : table de relocation
-*/
-Elf32_Rela *lecture_reimplantation(FILE *fd, Elf32_Shdr *table_section);
-
 /*principe : type de la table de relocation
   parametre : entete
   valeur de retour : aucune
@@ -71,11 +65,5 @@ void get_ln (FILE *fd,Elf32_Ehdr entete,Elf32_Shdr table_section []);
   valeur de retour : adresse de la section a reimplanter
 */
 Elf32_Addr getValueReimplantation(Elf32_Sym *tableSymbole, Elf32_Word info);
-
-/*principe : recupere le nom de la section ou symbole pour faire la reimplantation
-  parametre : table de section, table des symboles
-  valeur de retour : le nom de la section a reimplanter
-*/
-char *getSectionOrSymboleName(Elf32_Shdr *table_section, Elf32_Sym *tableSymbole, Elf32_Word info);
 
 #endif
